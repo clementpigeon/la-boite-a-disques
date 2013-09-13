@@ -54,15 +54,14 @@ class AlbumsController < ApplicationController
     @album = Album.find(params[:id])
 
 
-    # respond_to do |format|
-    #   if @album.update_attributes(params[:album])
-    #     format.html { redirect_to @album, notice: 'Album was successfully updated.' }
-    #     format.json { head :no_content }
-    #   else
-    #     format.html { render action: "edit" }
-    #     format.json { render json: @album.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    @album.update_attributes(params[:album])
+    if @album.save
+      redirect_to album_url(@album)
+    else
+      render :edit
+    end
+
+
   end
 
 

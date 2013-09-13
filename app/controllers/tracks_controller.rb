@@ -15,9 +15,9 @@ class TracksController < ApplicationController
 
 
   def new
-    @track = Track.new
     @albums = Album.all
-    @album = Album.find(params[:album_id])
+    @track = Track.new
+    @track.album = Album.find(params[:album_id])
     render :new
   end
 
@@ -30,16 +30,20 @@ class TracksController < ApplicationController
 
 
   def create
-    @track = Track.new(params[:track])
-
+    @track = Track.create!(params[:track])
+    redirect_to album_url(@track.album)
 
   end
 
 
   def update
     @track = Track.find(params[:id])
-
-
+    @track.update_attributes(params[:track])
+    if @track.save
+      redirect_to album_url(@track.album)
+    else
+      render :edit
+    end
   end
 
 

@@ -39,18 +39,12 @@ class BandsController < ApplicationController
 
   def update
     @band = Band.find(params[:id])
-
-    # respond_to do |format|
-    #   if @band.update_attributes(params[:band])
-    #     format.html { redirect_to @band, notice: 'Band was successfully updated.' }
-    #     format.json { head :no_content }
-    #   else
-    #     format.html { render action: "edit" }
-    #     format.json { render json: @band.errors, status: :unprocessable_entity }
-    #   end
-    # end
-
-    redirect_to @band
+    @band.update_attributes(params[:band])
+    if @band.save
+      redirect_to band_url(@band)
+    else
+      render :edit
+    end
   end
 
 

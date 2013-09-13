@@ -1,5 +1,5 @@
 <% method = (@track.persisted? ? :put : :post) %>
-<% action = (@track.persisted? ? album_url(band) : albums_url) %>
+<% action = (@track.persisted? ? track_url(@track) : tracks_url) %>
 
 <form action="<%= action %>" method="post">
   <input type="hidden" name="_method" value="<%= method %>">
@@ -16,27 +16,39 @@
     value='<%= @track.title %>'
     >
   </label>
-  <br>
+  <br><br>
 
   <label>Album
     <select name="track[album_id]" >
       <option></option>
       <% @albums.each do |album| %>
         <option
-          <%= @album == album ? "selected" : "" %>
+          <%= @track.album == album ? "selected" : "" %>
           value="<%= album.id %>">
           <%= album.title %>
         </option>
       <% end %>
     </select>
   </label>
+  <br><br>
+
+  <input name="track[bonus]" value="0" type="hidden">
+  <input type="checkbox" name="track[bonus]" value="1"
+    <%= 'checked' if @track.bonus == true %>
+    >
+     Bonus track
+  <br>
   <br>
 
+  <textarea cols="30" rows="20"
+    name="track[lyrics]"
+    value="<%= @track.lyrics %>">
+  </textarea>
 
-
+  <br><br>
   <input
-    type='submit'
-    value='Add'>
-
+    type="submit"
+    value="Save">
+  <br>
  </form>
 

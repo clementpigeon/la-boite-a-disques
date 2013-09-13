@@ -1,25 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @track.title %>
-</p>
+<h2>Track details</h2>
 
-<p>
-  <b>Album:</b>
-  <%= @track.album %>
-</p>
+<p>Title: <%= @track.title %></p>
 
-<p>
-  <b>Bonus:</b>
-  <%= @track.bonus %>
-</p>
+<p>Album: <%= @track.album.title %><%= " (bonus track)" if @track.bonus == true %></p>
 
-<p>
-  <b>Lyrics:</b>
-  <%= @track.lyrics %>
+<h4>Lyrics:</h4>
+<%= @track.lyrics %><%= "not available" unless @track.lyrics %>
 </p>
 
 
-<%= link_to 'Edit', edit_track_path(@track) %> |
-<%= link_to 'Back', tracks_path %>
+<%= link_to 'Edit details', edit_track_path(@track.id) %>
+

@@ -6,11 +6,11 @@ LaBoiteADisques::Application.routes.draw do
     resources :albums, only: [:new]
   end
 
-  resources :albums do
+  resources :albums , except: :index do
     resources :tracks, only: [:new]
   end
 
-  resources :tracks
+  resources :tracks, except: :index
 
 
 

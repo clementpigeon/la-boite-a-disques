@@ -1,5 +1,5 @@
 <% method = (@album.persisted? ? :put : :post) %>
-<% action = (@album.persisted? ? album_url(band) : albums_url) %>
+<% action = (@album.persisted? ? album_url(@album.band) : albums_url) %>
 
 <form action="<%= action %>" method="post">
   <input type="hidden" name="_method" value="<%= method %>">
