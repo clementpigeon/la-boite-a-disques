@@ -1,22 +1,26 @@
 class AlbumsController < ApplicationController
 
-
   def index
     @albums = Album.all
-
 
   end
 
 
   def show
     @album = Album.find(params[:id])
+    # @album = Album.includes(:band, :tracks).find(params[:id])
     @band = @album.band
+    @tracks = @album.tracks
+
+    # with a nested include you could do that:
+    #@band.albums.each do |album| album.tracks.each do |track| ... end end
     render :show
   end
 
 
   def new
     @album = Album.new
+    @bands = Band.all
 
     render :new
   end
@@ -24,7 +28,9 @@ class AlbumsController < ApplicationController
 
   def edit
     @album = Album.find(params[:id])
+    @bands = Band.all
 
+    render :edit
 
   end
 
@@ -46,6 +52,7 @@ class AlbumsController < ApplicationController
 
   def update
     @album = Album.find(params[:id])
+
 
     # respond_to do |format|
     #   if @album.update_attributes(params[:album])

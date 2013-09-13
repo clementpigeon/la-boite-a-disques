@@ -2,7 +2,7 @@
 
 <h1><%= @band.name %></h1>
 
-<h2>Albums</h2>
+<h3>Albums</h3>
 
 <ul>
   <% @albums.each do |album| %>
@@ -13,7 +13,8 @@
 </ul>
 
 
-
+<%= link_to 'Add an album', new_band_album_url(@band) %>
+<br>
 <%= link_to 'Edit this band', edit_band_path(@band) %>
-
+<br>
 <%= link_to 'Back to bands list', bands_path %>

@@ -1,33 +1,63 @@
-<%= form_for(@album) do |f| %>
-  <% if @album.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@album.errors.count, "error") %> prohibited this album from being saved:</h2>
+<% method = (@album.persisted? ? :put : :post) %>
+<% action = (@album.persisted? ? album_url(band) : albums_url) %>
 
-      <ul>
-      <% @album.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+<form action="<%= action %>" method="post">
+  <input type="hidden" name="_method" value="<%= method %>">
+
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+
+  <label>Title of the album
+    <input
+    type='text'
+    name='album[title]'
+    value='<%= @album.title %>'
+    >
+  </label>
+  <br>
+
+  <label>Band
+    <select name="album[band_id]" >
+      <option></option>
+      <% @bands.each do |band| %>
+        <option
+          <%= @album.band == band ? "selected" : "" %>
+          value="<%= band.id %>">
+          <%= band.name %>
+        </option>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
+    </select>
+  </label>
+  <br>
 
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :band %><br />
-    <%= f.text_field :band %>
-  </div>
-  <div class="field">
-    <%= f.label :year %><br />
-    <%= f.number_field :year %>
-  </div>
-  <div class="field">
-    <%= f.label :album_type %><br />
-    <%= f.text_field :album_type %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+  <label>Year
+    <input
+    type='text'
+    name='album[year]'
+    value='<%= @album.year %>'
+    >
+  </label>
+  <br>
+
+  <label>Album type
+    <select name="album[album_type]" >
+      <% Album::ALBUM_TYPES.each do |album_type| %>
+        <option
+          <%= @album.album_type == album_type ? "selected" : "" %>
+          value="<%= album_type %>">
+          <%= album_type %>
+        </option>
+      <% end %>
+    </select>
+  </label>
+  <br>
+
+  <input
+    type='submit'
+    value='Add'>
+
+ </form>
+
+

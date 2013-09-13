@@ -5,7 +5,14 @@ class Track < ActiveRecord::Base
 
   before_validation :not_bonus_by_default
 
-  belongs_to :album
+  belongs_to(
+  :album,
+  class_name: 'Album',
+  foreign_key: :album_id,
+  primary_key: :id
+  )
+
+  has_one :band, through: :album, source: :band
 
   def not_bonus_by_default
     if self.bonus.nil?
@@ -13,8 +20,5 @@ class Track < ActiveRecord::Base
     end
   end
 
-  def band
-    self.album.band
-  end
 
 end

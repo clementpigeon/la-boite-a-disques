@@ -24,18 +24,15 @@ class BandsController < ApplicationController
   def edit
     @band = Band.find(params[:id])
 
-
   end
 
 
   def create
     @band = Band.new(params[:band])
 
-    if @band.save
-      redirect_to @band
-    else
-      false
-    end
+    @band.save!
+
+    redirect_to band_url(@band)
 
   end
 
