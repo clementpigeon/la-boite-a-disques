@@ -1,0 +1,42 @@
+<% method = (@note.persisted? ? :put : :post) %>
+<% action = (@note.persisted? ? track_url(@note) : notes_url) %>
+
+<form action="<%= action %>" method="post">
+  <input type="hidden" name="_method" value="<%= method %>">
+
+  <input
+    type="hidden"
+    name="note[user_id]"
+    value="<%= @note.user_id %>" >
+  <br>
+
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+
+  <input
+    type='hidden'
+    name='note[track_id]'
+    value='<%= @note.track_id %>'
+    >
+
+  <p>Make a note on this song</p>
+  <textarea cols="30" rows="20"
+    name="note[text]"
+    value="<%= @note.text %>">
+  </textarea>
+
+  <br><br>
+  <input
+    type="submit"
+    value="Save">
+  <br>
+ </form>
+
+
+
+
+
+
+

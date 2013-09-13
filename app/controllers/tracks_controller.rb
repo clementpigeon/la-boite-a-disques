@@ -6,13 +6,13 @@ class TracksController < ApplicationController
     render :index
   end
 
-
   def show
     @track = Track.find(params[:id])
-
+    @note = Note.new
+    @note.track_id = params[:id]
+    @note.user_id = 1
     render :show
   end
-
 
   def new
     @albums = Album.all
@@ -21,13 +21,11 @@ class TracksController < ApplicationController
     render :new
   end
 
-
   def edit
     @track = Track.find(params[:id])
     @albums = Album.all
 
   end
-
 
   def create
     @track = Track.create!(params[:track])

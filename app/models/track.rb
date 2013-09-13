@@ -14,6 +14,14 @@ class Track < ActiveRecord::Base
 
   has_one :band, through: :album, source: :band
 
+  has_many(
+    :notes,
+    class_name: 'Note',
+    foreign_key: :track_id,
+    primary_key: :id
+  )
+
+
   def not_bonus_by_default
     if self.bonus.nil?
       self.bonus = 0

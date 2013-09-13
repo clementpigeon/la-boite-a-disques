@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Track:</b>
+  <%= @note.track %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @note.user %>
+</p>
+
+<p>
+  <b>Text:</b>
+  <%= @note.text %>
+</p>
+
+
+<%= link_to 'Edit', edit_note_path(@note) %> |
+<%= link_to 'Back', notes_path %>

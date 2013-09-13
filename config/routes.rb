@@ -1,5 +1,8 @@
 LaBoiteADisques::Application.routes.draw do
 
+  resources :notes
+
+
   root :to => 'bands#index'
 
   resources :bands do
@@ -10,7 +13,9 @@ LaBoiteADisques::Application.routes.draw do
     resources :tracks, only: [:new]
   end
 
-  resources :tracks, except: :index
+  resources :tracks, except: :index do
+    resources :notes, only: [:new]
+  end
 
 
 

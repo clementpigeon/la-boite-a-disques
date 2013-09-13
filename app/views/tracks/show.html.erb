@@ -12,6 +12,21 @@
 <%= @track.lyrics %><%= "not available" unless @track.lyrics %>
 </p>
 
+<h4>Notes:</h4>
+<ul>
+  <% @track.notes.each do |note| %>
+  <li><b><%= "Note by #{note.author.email}" %></b><br>
+      <%= note.text %>
+    </li>
+  <% end %>
+</ul>
+<%= render partial: "notes/notes" %>
+
+</p>
+
+<%= link_to 'Add a note', new_track_note_url(@track.id) %>
+
+
 <%= button_to 'Delete track', { :action => "destroy", :id => @track.id },
           :confirm => "Are you sure?", :method => :delete %>
 
