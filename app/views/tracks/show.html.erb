@@ -4,12 +4,18 @@
 
 <p>Title: <%= @track.title %></p>
 
+<p>Band: <%= @track.band.name %></p>
+
 <p>Album: <%= @track.album.title %><%= " (bonus track)" if @track.bonus == true %></p>
 
 <h4>Lyrics:</h4>
 <%= @track.lyrics %><%= "not available" unless @track.lyrics %>
 </p>
 
+<%= button_to 'Delete track', { :action => "destroy", :id => @track.id },
+          :confirm => "Are you sure?", :method => :delete %>
 
-<%= link_to 'Edit details', edit_track_path(@track.id) %>
 
+<%= link_to 'Edit details', edit_track_url(@track.id) %><br>
+<%= link_to 'Go to album page', album_url(@track.album.id) %><br>
+<%= link_to 'Go to band page', band_url(@track.band.id) %>

@@ -2,7 +2,7 @@
 
 <h2><em><%= @album.title %></em> by <%= @album.band.name %></h2>
 
-<p>This <%= @album.album_type %> released in <%= @album.year %></p>
+<p>This <%= @album.album_type %> was released in <%= @album.year %></p>
 
 <h3>Tracklist</h3>
 
@@ -17,6 +17,10 @@
 </ul>
 
 <%= link_to 'Add a track', new_album_track_url(@album) %>
+<br>
+<%= button_to 'Delete album', { :action => "destroy", :id => @album.id },
+          :confirm => "Are you sure?", :method => :delete %>
+
 <br>
 <%= link_to 'Edit album informations', edit_album_url(@album) %>
 <br>

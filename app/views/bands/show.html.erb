@@ -28,4 +28,8 @@
 <br>
 <%= link_to 'Edit this band', edit_band_path(@band) %>
 <br>
+<%= button_to 'Remove this band from database', { :action => "destroy", :id => @band.id },
+          :confirm => "Are you sure?", :method => :delete %>
+
+<br>
 <%= link_to 'Back to bands list', bands_path %>

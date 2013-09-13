@@ -31,8 +31,11 @@ class TracksController < ApplicationController
 
   def create
     @track = Track.create!(params[:track])
-    redirect_to album_url(@track.album)
-
+    if @track.save
+      redirect_to album_url(@track.album)
+    else
+      render :new
+    end
   end
 
 
@@ -50,7 +53,7 @@ class TracksController < ApplicationController
   def destroy
     @track = Track.find(params[:id])
     @track.destroy
-
+    redirect_to album_url(@track.album)
 
   end
 end

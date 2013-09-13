@@ -28,10 +28,11 @@ class BandsController < ApplicationController
 
   def create
     @band = Band.new(params[:band])
-
-    @band.save!
-
-    redirect_to band_url(@band)
+    if @band.save
+      redirect_to band_url(@band)
+    else
+      render :new
+    end
 
   end
 
@@ -49,8 +50,9 @@ class BandsController < ApplicationController
 
   def destroy
     @band = Band.find(params[:id])
-    # @band.destroy
+    @band.destroy
 
+    redirect_to :bands
 
   end
 end
