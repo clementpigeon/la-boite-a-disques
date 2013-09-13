@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<h2><em><%= @album.title %></em> by <%= @album.band.name %></h2>
+
+<p>This <%= @album.album_type %> released in <%= @album.year %></p>
+
+
+
+<%= link_to 'Edit informations', edit_album_url(@album) %> |
+<%= link_to 'Back to band page', band_url(@band) %>

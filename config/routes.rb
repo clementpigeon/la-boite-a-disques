@@ -1,5 +1,12 @@
 LaBoiteADisques::Application.routes.draw do
-  resources :bands
+  resources :bands do
+    resources :albums, only: [:new]
+  end
+
+  resources :albums
+
+
+
 
 
   # The priority is based upon order of creation:

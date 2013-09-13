@@ -1,50 +1,45 @@
 class BandsController < ApplicationController
-  # GET /bands
-  # GET /bands.json
+
   def index
     @bands = Band.all
 
     render :index
   end
 
-  # GET /bands/1
-  # GET /bands/1.json
+
   def show
     @band = Band.find(params[:id])
-
+    @albums = @band.albums
     render :show
   end
 
-  # GET /bands/new
-  # GET /bands/new.json
+
   def new
     @band = Band.new
 
     render:new
   end
 
-  # GET /bands/1/edit
+
   def edit
     @band = Band.find(params[:id])
 
-    #redirect_to
+
   end
 
-  # POST /bands
-  # POST /bands.json
+
   def create
     @band = Band.new(params[:band])
 
     if @band.save
-      true
+      redirect_to @band
     else
       false
     end
 
   end
 
-  # PUT /bands/1
-  # PUT /bands/1.json
+
   def update
     @band = Band.find(params[:id])
 
@@ -57,10 +52,11 @@ class BandsController < ApplicationController
     #     format.json { render json: @band.errors, status: :unprocessable_entity }
     #   end
     # end
+
+    redirect_to @band
   end
 
-  # DELETE /bands/1
-  # DELETE /bands/1.json
+
   def destroy
     @band = Band.find(params[:id])
     # @band.destroy
