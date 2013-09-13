@@ -1,0 +1,18 @@
+<h1>All songs</h1>
+
+<ul>
+  <% @tracks.each do |track| %>
+  <li><em><%= link_to track.title, track %></em> by <%= track.band.name %> (from <em><%= track.album.title %></em>, <%= track.album.year %>)
+
+    </li>
+  <% end %>
+</ul>
+
+
+
+
+
+
+<br />
+
+<%= link_to 'Add track', new_track_path %>

@@ -1,11 +1,16 @@
 LaBoiteADisques::Application.routes.draw do
+
+
+
   resources :bands do
     resources :albums, only: [:new]
   end
 
-  resources :albums
+  resources :albums do
+    resources :tracks, only: [:new]
+  end
 
-
+  resources :tracks
 
 
 

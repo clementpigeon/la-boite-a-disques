@@ -5,7 +5,9 @@ class Album < ActiveRecord::Base
   validates :band_id, :title, presence: true
 
   before_validation :default_album_type
+
   belongs_to :band
+  has_many :tracks
 
   def default_album_type
     puts 'default type'
@@ -13,5 +15,6 @@ class Album < ActiveRecord::Base
       self.album_type = 'LP'
     end
   end
+
 
 end
