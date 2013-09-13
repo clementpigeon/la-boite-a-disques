@@ -1,6 +1,11 @@
 LaBoiteADisques::Application.routes.draw do
 
   resources :notes
+  resources :users, only: [:new, :create] do
+    post 'activate'
+  end
+
+  resources :session, only: [:new, :create, :destroy]
 
 
   root :to => 'bands#index'
@@ -16,6 +21,8 @@ LaBoiteADisques::Application.routes.draw do
   resources :tracks, except: :index do
     resources :notes, only: [:new]
   end
+
+
 
 
 
