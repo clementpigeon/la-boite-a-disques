@@ -5,10 +5,21 @@
 <h3>Albums</h3>
 
 <ul>
-  <% @albums.each do |album| %>
+  <% @band.albums.each do |album| %>
   <li><%= link_to album.title, album %>, <%= album.year %> (<%= album.album_type %>)
 
     </li>
+  <% end %>
+</ul>
+
+
+<h3>Tracks</h3>
+
+<ul>
+  <% @band.albums.each do |album| %>
+    <% album.tracks.each do |track| %>
+      <li><%= link_to track.title, track %> </li>
+    <% end %>
   <% end %>
 </ul>
 

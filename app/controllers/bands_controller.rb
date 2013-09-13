@@ -8,8 +8,7 @@ class BandsController < ApplicationController
 
 
   def show
-    @band = Band.find(params[:id])
-    @albums = @band.albums
+    @band = Band.includes(:albums => :tracks).find(params[:id])
     render :show
   end
 

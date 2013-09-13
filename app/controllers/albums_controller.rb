@@ -7,10 +7,10 @@ class AlbumsController < ApplicationController
 
 
   def show
-    @album = Album.find(params[:id])
+    @album = Album.includes(:tracks).find(params[:id])
     # @album = Album.includes(:band, :tracks).find(params[:id])
     @band = @album.band
-    @tracks = @album.tracks
+    # @tracks = @album.tracks
 
     # with a nested include you could do that:
     #@band.albums.each do |album| album.tracks.each do |track| ... end end

@@ -9,5 +9,6 @@ class Band < ActiveRecord::Base
   primary_key: :id
   )
 
+  has_many :tracks, through: :albums, source: :tracks
 
 end

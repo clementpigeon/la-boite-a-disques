@@ -7,7 +7,7 @@
 <h3>Tracklist</h3>
 
 <ul>
-  <% @tracks.each do |track| %>
+  <% @album.tracks.each do |track| %>
   <li><%= "#{track.track_number} - " if track.track_number %>
     <%= link_to track.title, track %>
     <%= ", #{track.length}" if track.length  %>
