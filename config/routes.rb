@@ -5,8 +5,7 @@ LaBoiteADisques::Application.routes.draw do
     post 'activate'
   end
 
-  resources :session, only: [:new, :create, :destroy]
-
+  resource :session, only: [:create, :destroy, :new]
 
   root :to => 'bands#index'
 

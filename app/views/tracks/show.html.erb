@@ -24,11 +24,11 @@
 
 </p>
 
-<%= link_to 'Add a note', new_track_note_url(@track.id) %>
+<%= link_to 'Add a note', new_track_note_url(@track.id) %><br>
 
 
 <%= button_to 'Delete track', { :action => "destroy", :id => @track.id },
-          :confirm => "Are you sure?", :method => :delete %>
+          :confirm => "Are you sure?", :method => :delete if is_admin? %>
 
 
 <%= link_to 'Edit details', edit_track_url(@track.id) %><br>

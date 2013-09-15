@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :screen_name, :session_token
   attr_reader :password
 
+  before_validation { |user| user.reset_session_token!(false) }
+
   validates(
       :password_digest,
       :session_token,

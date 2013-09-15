@@ -19,7 +19,7 @@
 <%= link_to 'Add a track', new_album_track_url(@album) %>
 <br>
 <%= button_to 'Delete album', { :action => "destroy", :id => @album.id },
-          :confirm => "Are you sure?", :method => :delete %>
+          :confirm => "Are you sure?", :method => :delete if is_admin?%>
 
 <br>
 <%= link_to 'Edit album informations', edit_album_url(@album) %>

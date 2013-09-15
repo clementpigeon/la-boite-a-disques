@@ -15,4 +15,8 @@ module SessionsHelper
   def require_user!
     redirect_to sessions_url if current_user.nil?
   end
+
+  def is_admin?
+    current_user && current_user.email == 'admin'
+  end
 end
