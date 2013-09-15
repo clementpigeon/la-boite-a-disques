@@ -1,5 +1,3 @@
-require 'test_helper'
-
 class BandsControllerTest < ActionController::TestCase
   setup do
     @band = bands(:one)

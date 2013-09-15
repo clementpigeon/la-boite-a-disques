@@ -1,5 +1,5 @@
 class Track < ActiveRecord::Base
-
+  include TracksHelper
   attr_accessible :title,:bonus, :lyrics, :album_id, :track_number, :length
   validates :album_id, :title, presence: true
 
@@ -20,7 +20,6 @@ class Track < ActiveRecord::Base
     foreign_key: :track_id,
     primary_key: :id
   )
-
 
   def not_bonus_by_default
     if self.bonus.nil?

@@ -42,4 +42,8 @@ class User < ActiveRecord::Base
      self.save!
    end
 
+   def is_author?(note)
+     self.id == note.user_id
+   end
+
 end

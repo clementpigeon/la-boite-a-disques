@@ -9,7 +9,7 @@
 <p>Album: <%= @track.album.title %><%= " (bonus track)" if @track.bonus == true %></p>
 
 <h4>Lyrics:</h4>
-<%= @track.lyrics %><%= "not available" unless @track.lyrics %>
+<%= ugly_lyrics(@track.lyrics) %><%= "not available" unless @track.lyrics %>
 </p>
 
 <h4>Notes:</h4>
@@ -17,20 +17,17 @@
   <% @track.notes.each do |note| %>
   <li><b><%= "Note by #{note.author.email}" %></b><br>
       <%= note.text %>
+      <%= button_to 'Delete', note_url(note.id), method: 'delete' if is_admin? || (current_user && current_user.is_author?(note)) %>
     </li>
   <% end %>
 </ul>
 <%= render partial: "notes/notes" %>
 
 </p>
-
-<%= link_to 'Add a note', new_track_note_url(@track.id) %><br>
-
-
+<%= link_to 'Edit details', edit_track_url(@track.id) %>
 <%= button_to 'Delete track', { :action => "destroy", :id => @track.id },
           :confirm => "Are you sure?", :method => :delete if is_admin? %>
 
 
-<%= link_to 'Edit details', edit_track_url(@track.id) %><br>
 <%= link_to 'Go to album page', album_url(@track.album.id) %><br>
 <%= link_to 'Go to band page', band_url(@track.band.id) %>

@@ -1,8 +1,8 @@
 class TracksController < ApplicationController
+  include TracksHelper
 
   def index
     @tracks = Track.all
-
     render :index
   end
 
@@ -39,7 +39,9 @@ class TracksController < ApplicationController
 
   def update
     @track = Track.find(params[:id])
+
     @track.update_attributes(params[:track])
+    # @track.lyrics = ugly_lyrics(params[:track][:lyrics])
     if @track.save
       redirect_to album_url(@track.album)
     else
